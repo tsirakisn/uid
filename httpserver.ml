@@ -431,7 +431,7 @@ let get_server_callbacks () =
 
 let default_handler conn req path =
 	let meth = req.Http.Request.request.Http.Request_header.meth in
-	dbg "default handler triggered for %s %s ..." (Http.Request_header.string_of_meth meth) path;
+	Printf.printf "default handler triggered for %s %s ...\n" (Http.Request_header.string_of_meth meth) path;
 	let resp = (Http.Response.make_response ~headers:(get_default_headers ())
 		      Http.Response_header.Status_not_implemented)
 	in Done resp

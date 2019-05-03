@@ -106,6 +106,8 @@ let strip_files_prefix path =
 
 let file_response conn req path =
 
+    Printf.printf "Got a file request!\n";
+
 	let filesize_too_big size =
 		((Int64.compare size (Int64.of_int (Ui_config.get_max_payload_size ()))) = 1) in
 
@@ -132,7 +134,7 @@ let file_response conn req path =
 		let filename = strip_files_prefix path in
 		let filename = if filename = "" then Ui_config.get_root_file () else filename in
 		let filename = Ui_config.get_files_dir () ^ filename in
-		dbg "Dispatching %s => %s ...%!" path filename;
+		Printf.printf "Dispatching %s => %s ...%!" path filename;
 		try
 			let fstat = Unix.LargeFile.stat filename in
 			if fstat.Unix.LargeFile.st_kind = Unix.S_DIR then begin

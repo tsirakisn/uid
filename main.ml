@@ -71,6 +71,7 @@ let main =
 
 	set_dispatcher ();
 	try
+        Printf.printf "Starting server...\n";
 		Server.start_server (setup_connections (Ui_config.get_http_port ()))
 	with
 	| Unix.Unix_error (e, f, m) ->
